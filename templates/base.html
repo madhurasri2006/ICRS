@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Intelligent Conflict Resolution System{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <aside class="sidebar">
+
+            <h2>ICRS</h2>
+            <p class="subtitle">Intelligent System</p>
+
+            <nav>
+                <a href="/" class="{% if request.path == '/' %}active{% endif %}">
+                    Dashboard
+                </a>
+
+                <a href="/rules" class="{% if request.path == '/rules' %}active{% endif %}">
+                    Knowledge Base
+                </a>
+
+                <a href="/facts" class="{% if request.path == '/facts' %}active{% endif %}">
+                    Input Facts
+                </a>
+
+                <a href="/analyze" class="{% if request.path == '/analyze' %}active{% endif %}">
+                    Conflict Analysis
+                </a>
+
+                <a href="/history" class="{% if request.path == '/history' %}active{% endif %}">
+                    Decision History
+                </a>
+            </nav>
+
+        </aside>
+
+        <main class="main-content">
+
+            {% block content %}
+            {% endblock %}
+
+        </main>
+
+    </div>
+
+</body>
+</html>

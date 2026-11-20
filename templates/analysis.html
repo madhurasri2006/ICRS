@@ -1,0 +1,172 @@
+
+{% extends "base.html" %}
+
+{% block title %}Decision Analysis | ICRS{% endblock %}
+
+{% block content %}
+
+<a href="/" class="back-dashboard">
+    &#8592; Back to Dashboard
+</a>
+
+<h1>Decision Analysis</h1>
+
+<p>Analyze matched rules and resolve conflicting conclusions.</p>
+
+<section class="analysis-section">
+
+    <h2>1. Matched Rules</h2>
+
+    {% if matched_rules %}
+
+    <table>
+        <tr>
+            <th>Rule Name</th>
+            <th>Condition</th>
+            <th>Conclusion</th>
+            <th>Priority</th>
+            <th>Reliability</th>
+        </tr>
+
+        {% for rule in matched_rules %}
+        <tr>
+            <td>{{ rule['rule_name'] }}</td>
+            <td>{{ rule['condition'] }}</td>
+            <td>{{ rule['conclusion'] }}</td>
+            <td>{{ rule['priority'] }}</td>
+            <td>{{ rule['reliability'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% else %}
+
+    <p class="analysis-message">
+        No rules matched the available input facts.
+    </p>
+
+    {% endif %}
+
+</section>
+
+{% if matched_rules %}
+
+<section class="analysis-section">
+
+    <h2>2. Conflict Detection</h2>
+
+    {% if conflict and conflict['has_conflict'] %}
+
+        <p class="analysis-message">
+            Conflict detected! Different rules produced
+            opposite conclusions.
+        </p>
+
+        <p><strong>Conflicting Conclusions:</strong></p>
+
+        <ul>
+            {% for conclusion in conflict['conclusions'] %}
+                <li>{{ conclusion }}</li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+
+        <p class="analysis-message">
+            No conflict detected. The matched rules
+            agree on the conclusion.
+        </p>
+
+    {% endif %}
+
+</section>
+
+<section class="analysis-section">
+
+    <h2>3. Conflict Resolution</h2>
+
+    {% if resolution %}
+
+        {% if resolution['resolved'] %}
+
+            <p class="analysis-message">
+                Conflict successfully resolved.
+            </p>
+
+            <p>
+                <strong>Selected Rule:</strong>
+                {{ resolution['selected_rule']['rule_name'] }}
+            </p>
+
+            <p>
+                <strong>Resolution Method:</strong>
+                {{ resolution['reason'] }}
+            </p>
+
+        {% else %}
+
+            <p class="analysis-message">
+                Conflict could not be resolved.
+            </p>
+
+            <p>{{ resolution['reason'] }}</p>
+
+        {% endif %}
+
+    {% else %}
+
+        <p class="analysis-message">
+            Conflict resolution was not required.
+        </p>
+
+    {% endif %}
+
+</section>
+
+<section class="analysis-section">
+
+    <h2>4. Final Decision</h2>
+
+    {% if selected_conclusion %}
+
+        <p class="decision-result">
+            {{ selected_conclusion }}
+        </p>
+
+    {% else %}
+
+        <p class="analysis-message">
+            No final decision is available.
+            More information may be required.
+        </p>
+
+    {% endif %}
+
+</section>
+
+{% if selected_conclusion %}
+
+<section class="analysis-section">
+
+    <h2>5. Save Decision</h2>
+
+    <p>
+        Click the button below to save this analysis
+        in your decision history.
+    </p>
+
+    <form action="{{ url_for('analyze') }}" method="POST">
+
+        <button type="submit" class="submit-btn">
+            Run Analysis & Save Decision
+        </button>
+
+    </form>
+
+</section>
+
+{% endif %}
+
+{% endif %}
+
+{% endblock %}

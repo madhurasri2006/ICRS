@@ -1,0 +1,45 @@
+
+{% extends "base.html" %}
+
+{% block title %}Dashboard | ICRS{% endblock %}
+
+{% block content %}
+
+<header>
+    <h1>Dashboard</h1>
+    <p>Intelligent Conflict Resolution System</p>
+</header>
+
+<section class="welcome">
+    <h2>Welcome to ICRS</h2>
+    <p>
+        Manage knowledge, detect conflicting rules
+        and generate intelligent decisions.
+    </p>
+</section>
+
+<section class="cards">
+
+    <div class="card">
+        <h3>Total Rules</h3>
+        <p>{{ total_rules }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Activated Rules</h3>
+        <p>{{ activated_rules }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Conflicts Detected</h3>
+        <p>{{ conflicts_detected }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Decisions Made</h3>
+        <p>{{ decisions_made }}</p>
+    </div>
+
+</section>
+
+{% endblock %}

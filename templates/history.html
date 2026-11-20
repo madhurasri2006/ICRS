@@ -1,0 +1,58 @@
+
+{% extends "base.html" %}
+
+{% block title %}Decision History | ICRS{% endblock %}
+
+{% block content %}
+
+<a href="/" class="back-dashboard">
+    &#8592; Back to Dashboard
+</a>
+
+<h1>Decision History</h1>
+
+<p>View previously generated decisions and their explanations.</p>
+
+<section class="analysis-section">
+
+    <h2>Previous Decisions</h2>
+
+    {% if decisions %}
+
+    <table>
+
+        <tr>
+            <th>Decision ID</th>
+            <th>Selected Conclusion</th>
+            <th>Selected Rule</th>
+            <th>Resolution Method</th>
+            <th>Explanation</th>
+            <th>Date & Time</th>
+        </tr>
+
+        {% for decision in decisions %}
+
+        <tr>
+            <td>{{ decision['id'] }}</td>
+            <td>{{ decision['selected_conclusion'] }}</td>
+            <td>{{ decision['selected_rule'] or 'N/A' }}</td>
+            <td>{{ decision['resolution_method'] }}</td>
+            <td>{{ decision['explanation'] }}</td>
+            <td>{{ decision['created_at'] }}</td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    {% else %}
+
+    <p class="analysis-message">
+        No decision history available yet.
+    </p>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

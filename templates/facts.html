@@ -1,0 +1,93 @@
+
+{% extends "base.html" %}
+
+{% block title %}Input Facts | ICRS{% endblock %}
+
+{% block content %}
+
+<a href="/" class="back-dashboard">
+    &#8592; Back to Dashboard
+</a>
+
+<h1>Input Facts Management</h1>
+
+<p>Manage the facts used by the inference engine.</p>
+
+<!-- Notification -->
+{% with messages = get_flashed_messages() %}
+    {% for message in messages %}
+        <div class="toast-message">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endwith %}
+
+<!-- Add Fact Form -->
+<form action="{{ url_for('add_fact') }}" method="POST">
+
+    <label>Fact Name</label>
+
+    <input type="text"
+           name="fact_name"
+           placeholder="Example: temperature"
+           required>
+
+    <label>Fact Value</label>
+
+    <input type="text"
+           name="fact_value"
+           placeholder="Example: high"
+           required>
+
+    <button type="submit">Add Fact</button>
+
+</form>
+
+<!-- Stored Facts -->
+<h2 style="margin-top: 35px;">Stored Facts</h2>
+
+<table style="width: 100%; margin-top: 20px;
+              background: white; border-collapse: collapse;">
+
+    <tr>
+        <th>Fact Name</th>
+        <th>Fact Value</th>
+        <th>Created At</th>
+        <th>Action</th>
+    </tr>
+
+    {% for fact in facts %}
+
+    <tr>
+        <td>{{ fact['fact_name'] }}</td>
+
+        <td>{{ fact['fact_value'] }}</td>
+
+        <td>{{ fact['created_at'] }}</td>
+
+        <td>
+            <form action="{{ url_for('delete_fact', fact_id=fact['id']) }}"
+                  method="POST"
+                  style="margin: 0; padding: 0; box-shadow: none;">
+
+                <button type="submit"
+                        style="background: #dc3545;
+                               padding: 8px 15px;">
+                    Delete
+                </button>
+
+            </form>
+        </td>
+    </tr>
+
+    {% else %}
+
+    <tr>
+        <td colspan="4">No facts added yet.</td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

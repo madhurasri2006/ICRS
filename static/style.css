@@ -1,0 +1,406 @@
+
+/* ==============================
+   GLOBAL STYLES
+============================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f3fa;
+    color: #29243b;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ==============================
+   SIDEBAR
+============================== */
+
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    background: #211b35;
+    color: white;
+    padding: 30px 20px;
+    z-index: 100;
+}
+
+.sidebar h2 {
+    font-size: 28px;
+}
+
+.subtitle {
+    color: #aaa2bd;
+    margin-top: 5px;
+    margin-bottom: 40px;
+}
+
+nav a {
+    display: block;
+    text-decoration: none;
+    color: #d5cfe2;
+    padding: 14px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+nav a:hover,
+nav a.active {
+    background: #51417a;
+    color: white;
+}
+
+/* ==============================
+   MAIN CONTENT
+============================== */
+
+.main-content {
+    max-width: 1100px;
+    width: calc(100% - 240px);
+    margin-left: 240px;
+    padding: 35px;
+}
+
+header h1 {
+    font-size: 30px;
+}
+
+header p {
+    color: #777;
+    margin-top: 8px;
+}
+
+/* ==============================
+   DASHBOARD WELCOME
+============================== */
+
+.welcome {
+    background: white;
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #00000008;
+}
+
+.welcome p {
+    margin-top: 12px;
+    color: #777;
+}
+
+/* ==============================
+   DASHBOARD CARDS
+============================== */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #00000008;
+}
+
+.card h3 {
+    font-size: 15px;
+    color: #777;
+}
+
+.card p {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #6246a5;
+}
+
+/* ==============================
+   PAGE HEADINGS
+============================== */
+
+.main-content h1 {
+    margin-bottom: 10px;
+}
+
+.main-content > p {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.main-content h1,
+.main-content h2,
+.main-content > p {
+    text-align: center;
+}
+
+/* ==============================
+   FORMS
+============================== */
+
+form {
+    background: white;
+    padding: 30px;
+    margin-top: 25px;
+    margin-bottom: 35px;
+    border-radius: 12px;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 3px 12px #00000008;
+}
+
+form label {
+    display: block;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+form input {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    font-size: 14px;
+    outline: none;
+}
+
+form input:focus {
+    border-color: #6246a5;
+}
+
+form button {
+    margin-top: 25px;
+    padding: 12px 25px;
+    background: #6246a5;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+form button:hover {
+    background: #49347e;
+}
+
+/* ==============================
+   TABLES
+============================== */
+
+.main-content table {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px #00000008;
+}
+
+.main-content th,
+.main-content td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.main-content th {
+    background: #eae5f5;
+    color: #29213b;
+}
+
+/* ==============================
+   ALERT NOTIFICATION
+============================== */
+
+.toast-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    color: #333;
+    padding: 14px 22px;
+    border-radius: 10px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+    border-left: 4px solid #6246a5;
+    font-size: 14px;
+    z-index: 1000;
+    animation: alertAnimation 1s ease forwards;
+}
+
+@keyframes alertAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    15% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-10px);
+        visibility: hidden;
+    }
+}
+
+/* ==============================
+   BACK TO DASHBOARD BUTTON
+============================== */
+
+.back-dashboard {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 20px;
+    background: #6246a5;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    transition: 0.3s ease;
+}
+
+.back-dashboard:hover {
+    background: #49347e;
+    transform: translateX(-3px);
+    box-shadow: 0 4px 12px rgba(98, 70, 165, 0.25);
+}
+
+/* ==============================
+   DECISION ANALYSIS PAGE
+============================== */
+
+.analysis-section {
+    background: white;
+    padding: 25px;
+    margin-top: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.analysis-section h2 {
+    color: #49347e;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.analysis-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: white;
+}
+
+.analysis-section th,
+.analysis-section td {
+    padding: 13px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.analysis-section th {
+    background: #f0ecf8;
+    color: #49347e;
+}
+
+.analysis-section ul {
+    margin: 12px 0 0 25px;
+}
+
+.analysis-section li {
+    margin-bottom: 8px;
+}
+
+.analysis-message {
+    background: #f4f0fb;
+    color: #49347e;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 12px;
+}
+
+.decision-result {
+    background: #eee8fa;
+    color: #49347e;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+    overflow-wrap: anywhere;
+}
+
+/* ==============================
+   RESPONSIVE DESIGN
+============================== */
+
+@media (max-width: 900px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .analysis-section {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    .analysis-section table {
+        min-width: 600px;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .main-content {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .main-content table {
+        display: block;
+        overflow-x: auto;
+    }
+}
